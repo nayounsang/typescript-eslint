@@ -12,11 +12,11 @@ export function createFileSystem(
   vfs: typeof tsvfs,
 ): PlaygroundSystem {
   const files = new Map<string, string>();
+  const code = config.code || '\n';
+
   files.set(`/.eslintrc`, config.eslintrc);
   files.set(`/tsconfig.json`, config.tsconfig);
-  if (config.code !== '') {
-    files.set(`/input${config.fileType}`, config.code);
-  }
+  files.set(`/input${config.fileType}`, code);
 
   const fileWatcherCallbacks = new Map<RegExp, Set<ts.FileWatcherCallback>>();
 
