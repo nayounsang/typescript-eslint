@@ -223,19 +223,7 @@ const analyzeOrChainOperand: OperandAnalyzer = (
         return [operand, nextOperand];
       }
 
-      if (
-        includesType(
-          parserServices,
-          operand.comparedName,
-          ts.TypeFlags.Undefined,
-        )
-      ) {
-        // we know the next operand is not an `undefined` check and that this
-        // operand includes `undefined` - which means that making this an
-        // optional chain would change the runtime behavior of the expression
-        return null;
-      }
-      return [operand];
+      return null;
     }
 
     case NullishComparisonType.StrictEqualUndefined: {
